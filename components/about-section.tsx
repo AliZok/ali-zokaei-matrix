@@ -1,7 +1,5 @@
 "use client";
 
-import { WebsiteCarousel } from "./website-carousel";
-
 const skills = [
   { category: "Frameworks", items: ["Vue.js", "Nuxt.js", "React.js", "Next.js"] },
   { category: "Languages", items: ["TypeScript", "JavaScript", "HTML5", "CSS3"] },
@@ -54,15 +52,6 @@ export function AboutSection() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Website Showcase Section */}
-      <div className="mt-24">
-        <h2 className="text-sm font-mono text-primary mb-4 tracking-wider text-center">PROJECT SHOWCASE</h2>
-        <p className="text-2xl md:text-3xl font-semibold text-center mb-12">
-          Live Preview of Recent Projects
-        </p>
-        <WebsiteCarousel />
       </div>
     </section>
   );
