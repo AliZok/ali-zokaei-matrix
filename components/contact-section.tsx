@@ -1,0 +1,58 @@
+"use client";
+
+import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
+
+const contacts = [
+  { icon: Mail, label: "Email", value: "ali.zokaei.1367@gmail.com", href: "mailto:ali.zokaei.1367@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+374 93 662054", href: "tel:+37493662054" },
+  { icon: MapPin, label: "Location", value: "Yerevan, Armenia", href: null },
+  { icon: Linkedin, label: "LinkedIn", value: "ali-zokaei-frontend-developer", href: "https://www.linkedin.com/in/ali-zokaei-frontend-developer" },
+  { icon: Globe, label: "Website", value: "owlestic.ir", href: "https://owlestic.ir" },
+];
+
+export function ContactSection() {
+  return (
+    <section id="contact" className="py-24 px-6 bg-muted/30">
+      <div className="max-w-5xl mx-auto">
+        <div className="max-w-xl">
+          <h2 className="text-sm font-mono text-primary mb-4 tracking-wider uppercase">Contact</h2>
+          <p className="text-3xl font-semibold mb-4">Let&apos;s work together</p>
+          <p className="text-muted-foreground mb-12 leading-relaxed">
+            I&apos;m currently available for freelance projects and full-time opportunities.
+            Feel free to reach out if you have an interesting project in mind.
+          </p>
+
+          <div className="space-y-4">
+            {contacts.map((item) => {
+              const content = (
+                <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-card transition-colors group">
+                  <div className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center group-hover:border-primary transition-colors">
+                    <item.icon size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                    <p className="text-sm font-medium">{item.value}</p>
+                  </div>
+                </div>
+              );
+
+              return item.href ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="block"
+                >
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label}>{content}</div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
