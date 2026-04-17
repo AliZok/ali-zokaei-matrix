@@ -21,12 +21,13 @@ export function MatrixRain() {
     window.addEventListener("resize", resizeCanvas);
 
     // Matrix-style characters including Japanese katakana, numbers, and symbols
-    const matrixChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?~`";
-    const japaneseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?~`";
+    const matrixChars = "01&`";
+    const japaneseChars = "01$";
     const chars = matrixChars + japaneseChars;
     
-    const fontSize = 24;
-    const columnSpacing = 48; // Increased spacing for clear separation
+    const fontSize = 20;
+    const columnSpacing = 40; // Increased spacing for clear separation
+    const verticalSpacing = 100; // Add vertical spacing between characters
     const columns = Math.floor(canvas.width / columnSpacing);
     
     // Enhanced drop system with speed variations
@@ -59,14 +60,14 @@ export function MatrixRain() {
         const char = chars[Math.floor(Math.random() * chars.length)];
         drop.trail.unshift({ char, opacity: 1 });
         
-        // Limit trail length
-        if (drop.trail.length > 20) {
+        // Limit trail length - reduced for better visibility
+        if (drop.trail.length > 12) {
           drop.trail.pop();
         }
         
         // Draw trail with fading effect
         drop.trail.forEach((trailChar, index) => {
-          const trailY = drop.y - index * fontSize;
+          const trailY = drop.y - index * verticalSpacing;
           
           if (trailY > 0 && trailY < canvas.height + fontSize) {
             // Bright green for leading character, fading for trail
@@ -90,12 +91,12 @@ export function MatrixRain() {
         ctx.shadowBlur = 0;
 
         // Update drop position
-        drop.y += drop.speed * fontSize;
+        drop.y += drop.speed * verticalSpacing;
 
         // Reset drop when it goes off screen
-        if (drop.y > canvas.height + drop.trail.length * fontSize) {
-          drop.y = Math.random() * -500;
-          drop.speed = Math.random() * 0.8 + 0.8;
+        if (drop.y > canvas.height + drop.trail.length * verticalSpacing) {
+          drop.y = Math.random() * -300;
+          drop.speed = Math.random() * 0.6 + 0.6;
           drop.opacity = Math.random() * 0.5 + 0.5;
           drop.trail = [];
         }
