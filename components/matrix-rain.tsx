@@ -25,8 +25,9 @@ export function MatrixRain() {
     const japaneseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?~`";
     const chars = matrixChars + japaneseChars;
     
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
+    const fontSize = 24;
+    const columnSpacing = 48; // Increased spacing for clear separation
+    const columns = Math.floor(canvas.width / columnSpacing);
     
     // Enhanced drop system with speed variations
     interface Drop {
@@ -38,7 +39,7 @@ export function MatrixRain() {
     
     const drops: Drop[] = Array(columns).fill(null).map(() => ({
       y: Math.random() * -100,
-      speed: Math.random() * 0.5 + 0.5,
+      speed: Math.random() * 0.2 + 0.1,
       opacity: Math.random() * 0.5 + 0.5,
       trail: []
     }));
@@ -52,7 +53,7 @@ export function MatrixRain() {
 
       for (let i = 0; i < drops.length; i++) {
         const drop = drops[i];
-        const x = i * fontSize;
+        const x = i * columnSpacing;
         
         // Add current character to trail
         const char = chars[Math.floor(Math.random() * chars.length)];
@@ -94,14 +95,14 @@ export function MatrixRain() {
         // Reset drop when it goes off screen
         if (drop.y > canvas.height + drop.trail.length * fontSize) {
           drop.y = Math.random() * -500;
-          drop.speed = Math.random() * 0.5 + 0.5;
+          drop.speed = Math.random() * 0.8 + 0.8;
           drop.opacity = Math.random() * 0.5 + 0.5;
           drop.trail = [];
         }
       }
     };
 
-    const interval = setInterval(draw, 35); // Faster animation for smoother effect
+    const interval = setInterval(draw, 130); // Slower animation for more dramatic effect
 
     return () => {
       clearInterval(interval);
