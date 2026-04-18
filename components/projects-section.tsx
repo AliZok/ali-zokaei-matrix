@@ -1,81 +1,101 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const projects = [
+const websites = [
   {
-    title: "GPS Tracking Dashboard",
-    description: "Real-time fleet tracking with live map visualizations and analytics.",
-    tech: ["React.js", "Next.js", "TypeScript"],
+    url: "https://ali-zokaei-women-salon.vercel.app/",
+    title: "Arayeshgah Zanune",
+    description: "Women's Salon"
   },
   {
-    title: "Mizban Cloud Panel",
-    description: "Cloud server management with VM provisioning and monitoring.",
-    tech: ["Vue 3", "TypeScript"],
-    url: "https://mizbancloud.com",
+    url: "https://psycho-tatto.vercel.app/",
+    title: "Tattoo Artist",
+    description: "Tattoo Art Studio"
   },
   {
-    title: "Aparat",
-    description: "Iran's largest video sharing platform with millions of users.",
-    tech: ["JavaScript", "Vue.js"],
-    url: "https://www.aparat.com",
+    url: "https://ali-zokaei-personal-branding.vercel.app/",
+    title: "Personal Branding",
+    description: "Personal Brand Website"
   },
   {
-    title: "Filimo",
-    description: "Premium streaming service for movies and TV shows.",
-    tech: ["JavaScript", "Vue.js"],
-    url: "https://www.filimo.com",
+    url: "https://car-show-wine.vercel.app/",
+    title: "Car Show",
+    description: "Automobile Exhibition"
   },
   {
-    title: "Owlestic",
-    description: "Personal portfolio and blog showcasing development work.",
-    tech: ["Nuxt.js", "TypeScript"],
-    url: "https://owlestic.ir",
+    url: "https://crypto-exchange-arnitex.netlify.app/",
+    title: "Crypto Exchange",
+    description: "Cryptocurrency Trading"
   },
+  {
+    url: "https://nails-purple.vercel.app/",
+    title: "Nails Purple",
+    description: "Women's Nail Art"
+  }
 ];
 
 export function ProjectsSection() {
-  const [current, setCurrent] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
 
-  const next = useCallback(() => {
-    setCurrent((p) => (p + 1) % projects.length);
-  }, []);
-
-  const prev = () => {
-    setIsAutoPlaying(false);
-    setCurrent((p) => (p - 1 + projects.length) % projects.length);
+  const nextSlide = () => {
+    if (isTransitioning) return;
+    setDirection('right');
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % websites.length);
+      setIsTransitioning(false);
+    }, 50);
   };
 
-  const goTo = (index: number) => {
-    setIsAutoPlaying(false);
-    setCurrent(index);
+  const prevSlide = () => {
+    if (isTransitioning) return;
+    setDirection('left');
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + websites.length) % websites.length);
+      setIsTransitioning(false);
+    }, 50);
+  };
+
+  const goToSlide = (index: number) => {
+    if (isTransitioning || index === currentIndex) return;
+    setDirection(index > currentIndex ? 'right' : 'left');
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsTransitioning(false);
+    }, 50);
   };
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, next]);
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, [isTransitioning]);
 
   return (
     <section id="projects" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-sm font-mono text-primary tracking-wider uppercase">
             Selected Work
           </h2>
           <div className="flex items-center gap-2">
             <button
-              onClick={prev}
+              onClick={prevSlide}
               className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
               aria-label="Previous"
             >
               <ChevronLeft size={16} />
             </button>
             <button
-              onClick={() => { setIsAutoPlaying(false); next(); }}
+              onClick={nextSlide}
               className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
               aria-label="Next"
             >
@@ -84,57 +104,106 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden">
+        {/* Title Carousel */}
+        <div className="mb-8 overflow-hidden">
           <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${current * 100}%)` }}
+            className="flex transition-transform duration-1000 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {projects.map((project, index) => (
-              <div key={index} className="w-full flex-shrink-0 px-1">
-                <div className="p-8 md:p-12 rounded-xl bg-card border border-border">
-                  <div className="max-w-2xl">
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <h3 className="text-2xl md:text-3xl font-semibold">{project.title}</h3>
-                      {project.url && (
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors shrink-0"
-                          aria-label={`Visit ${project.title}`}
-                        >
-                          <ExternalLink size={16} />
-                        </a>
-                      )}
-                    </div>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((t) => (
-                        <span key={t} className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+            {websites.map((website, index) => (
+              <div key={index} className="w-full flex-shrink-0 text-center">
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                  {website.title}
+                </h3>
+                <p className="text-lg text-muted-foreground mt-2">
+                  {website.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Main Carousel Container */}
+        <div className="relative h-[600px] overflow-hidden rounded-xl border border-border">
+          {/* Current Slide */}
+          <div
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              isTransitioning
+                ? 'opacity-0 scale-110'
+                : 'opacity-100 scale-100'
+            }`}
+          >
+            <iframe
+              src={websites[currentIndex].url}
+              title={websites[currentIndex].title}
+              className="w-full h-full"
+              loading="lazy"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            />
+          </div>
+          
+          {/* Next Slide (hidden until transition) */}
+          <div
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              isTransitioning && direction === 'right'
+                ? 'opacity-100 scale-100'
+                : 'opacity-0 scale-90'
+            }`}
+          >
+            <iframe
+              src={websites[(currentIndex + 1) % websites.length].url}
+              title={websites[(currentIndex + 1) % websites.length].title}
+              className="w-full h-full"
+              loading="lazy"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            />
+          </div>
+          
+          {/* Previous Slide (hidden until transition) */}
+          <div
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              isTransitioning && direction === 'left'
+                ? 'opacity-100 scale-100'
+                : 'opacity-0 scale-90'
+            }`}
+          >
+            <iframe
+              src={websites[(currentIndex - 1 + websites.length) % websites.length].url}
+              title={websites[(currentIndex - 1 + websites.length) % websites.length].title}
+              className="w-full h-full"
+              loading="lazy"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            />
+          </div>
+        </div>
+
+        {/* Dots Indicator */}
         <div className="flex items-center justify-center gap-2 mt-8">
-          {projects.map((_, i) => (
+          {websites.map((_, index) => (
             <button
-              key={i}
-              onClick={() => goTo(i)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                i === current ? "bg-primary" : "bg-border hover:bg-muted-foreground"
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentIndex
+                  ? "bg-primary w-8"
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
               }`}
-              aria-label={`Go to project ${i + 1}`}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
+        </div>
+
+        {/* Visit Website Link */}
+        <div className="text-center mt-6">
+          <a
+            href={websites[currentIndex].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+          >
+            Visit Website
+            <ChevronRight size={16} />
+          </a>
         </div>
       </div>
     </section>

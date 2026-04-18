@@ -66,10 +66,6 @@ export function HeroSection() {
         </div>
       </section>
 
-      {/* Website Showcase Section */}
-      <section className="relative px-4 md:px-8 lg:px-10">
-        <WebsiteCarousel />
-      </section>
     </>
   );
 }
