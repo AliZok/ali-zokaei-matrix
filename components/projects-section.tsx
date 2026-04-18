@@ -67,8 +67,6 @@ export function ProjectsSection() {
     <section 
       id="projects" 
       className="py-24 px-6"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-12">
@@ -113,7 +111,11 @@ export function ProjectsSection() {
         </div>
 
         {/* Main Carousel Container */}
-        <div className="relative h-[600px] overflow-hidden rounded-xl border border-border group">
+        <div 
+          className="relative h-[600px] overflow-hidden rounded-xl border border-border group"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           
           {/* لایه محافظ برای تشخیص موس روی آیفریم */}
           <div className="absolute inset-0 z-20 pointer-events-none group-hover:pointer-events-auto" />
