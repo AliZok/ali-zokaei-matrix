@@ -66,24 +66,24 @@ export function ProjectsSection() {
   return (
     <section 
       id="projects" 
-      className="py-24 px-6"
+      className="h-screen px-6 flex flex-col justify-center"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-sm font-mono text-primary tracking-wider uppercase">
+          <h2 className="text-sm font-mono text-primary tracking-wider uppercase hover:text-green-500 transition-colors">
             Selected Works
           </h2>
           <div className="flex items-center gap-2">
             <button
               onClick={prevSlide}
-              className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
+              className="p-2 rounded-full border border-border hover:border-green-500 hover:text-green-500 transition-colors"
               aria-label="Previous"
             >
               <ChevronLeft size={16} />
             </button>
             <button
               onClick={nextSlide}
-              className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
+              className="p-2 rounded-full border border-border hover:border-green-500 hover:text-green-500 transition-colors"
               aria-label="Next"
             >
               <ChevronRight size={16} />
@@ -99,12 +99,19 @@ export function ProjectsSection() {
           >
             {websites.map((website, index) => (
               <div key={index} className="w-full flex-shrink-0 text-center">
-                <h3 className="text-3xl md:text-4xl font-bold text-foreground">
-                  {website.title}
-                </h3>
-                <p className="text-lg text-muted-foreground mt-2">
-                  {website.description}
-                </p>
+                <a
+                  href={website.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block hover:text-green-500 transition-colors"
+                >
+                  <h3 className="text-3xl md:text-4xl font-bold text-foreground hover:text-green-500 transition-colors">
+                    {website.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground mt-2 hover:text-green-500 transition-colors">
+                    {website.description}
+                  </p>
+                </a>
               </div>
             ))}
           </div>
@@ -112,13 +119,22 @@ export function ProjectsSection() {
 
         {/* Main Carousel Container */}
         <div 
-          className="relative h-[600px] overflow-hidden rounded-xl border border-border group"
+          className="relative h-[calc(100vh-250px)] overflow-hidden rounded-xl border border-border group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           
-          {/* لایه محافظ برای تشخیص موس روی آیفریم */}
-          <div className="absolute inset-0 z-20 pointer-events-none group-hover:pointer-events-auto" />
+          {/* Clickable overlay for iframe */}
+          <a
+            href={websites[currentIndex].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute inset-0 z-20 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-colors cursor-pointer"
+          >
+            <div className="text-white opacity-0 hover:opacity-100 transition-opacity bg-black/50 px-4 py-2 rounded-lg">
+              Click to visit website
+            </div>
+          </a>
 
           {/* Current Slide */}
           <div
@@ -171,33 +187,7 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex items-center justify-center gap-2 mt-8">
-          {websites.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all ${
-                index === currentIndex
-                  ? "bg-primary w-8"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
-              }`}
-            />
-          ))}
-        </div>
 
-        {/* Visit Website Link */}
-        <div className="text-center mt-6">
-          <a
-            href={websites[currentIndex].url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
-          >
-            Visit Website
-            <ChevronRight size={16} />
-          </a>
-        </div>
       </div>
     </section>
   );
