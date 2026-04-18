@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const websites = [
   {
     url: "https://ali-zokaei-women-salon.vercel.app/",
-    title: "Arayeshgah Zanune",
+    title: "Women Salon",
     description: "Women's Salon"
   },
   {
@@ -84,7 +84,7 @@ export function ProjectsSection() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-sm font-mono text-primary tracking-wider uppercase">
-            Selected Work
+            Selected Works
           </h2>
           <div className="flex items-center gap-2">
             <button
