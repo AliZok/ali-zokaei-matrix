@@ -92,7 +92,7 @@ export function ProjectsSection() {
         </div>
 
         {/* Title Carousel */}
-        <div className="mb-8 overflow-hidden">
+        <div className="mb-4 overflow-hidden">
           <div
             className="flex transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
