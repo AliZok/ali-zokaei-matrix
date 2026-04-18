@@ -1,47 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const websites = [
-  {
-    url: "https://ali-zokaei-women-salon.vercel.app/",
-    title: "Women Salon",
-    description: "Women's Salon"
-  },
-  {
-    url: "https://psycho-tatto.vercel.app/",
-    title: "Tattoo Artist",
-    description: "Tattoo Art Studio"
-  },
-  {
-    url: "https://ali-zokaei-personal-branding.vercel.app/",
-    title: "Personal Branding",
-    description: "Personal Brand Website"
-  },
-  {
-    url: "https://car-show-wine.vercel.app/",
-    title: "Car Show",
-    description: "Automobile Exhibition"
-  },
-  {
-    url: "https://crypto-exchange-arnitex.netlify.app/",
-    title: "Crypto Exchange",
-    description: "Cryptocurrency Trading"
-  },
-  {
-    url: "https://nails-purple.vercel.app/",
-    title: "Nails Purple",
-    description: "Women's Nail Art"
-  }
+  { url: "https://ali-zokaei-women-salon.vercel.app/", title: "Women Salon", description: "Women's Salon" },
+  { url: "https://psycho-tatto.vercel.app/", title: "Tattoo Artist", description: "Tattoo Art Studio" },
+  { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website" },
+  { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition" },
+  { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading" },
+  { url: "https://nails-purple.vercel.app/", title: "Nails Purple", description: "Women's Nail Art" }
 ];
 
 export function ProjectsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const [isHovered, setIsHovered] = useState(false); // اضافه کردن وضعیت هاور
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (isTransitioning) return;
     setDirection('right');
     setIsTransitioning(true);
@@ -49,7 +26,7 @@ export function ProjectsSection() {
       setCurrentIndex((prev) => (prev + 1) % websites.length);
       setIsTransitioning(false);
     }, 50);
-  };
+  }, [isTransitioning]);
 
   const prevSlide = () => {
     if (isTransitioning) return;
@@ -71,16 +48,28 @@ export function ProjectsSection() {
     }, 50);
   };
 
+  // مدیریت اتوپلی با شرط عدم هاور
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 7000);
+    let interval: NodeJS.Timeout;
+    
+    if (!isHovered) {
+      interval = setInterval(() => {
+        nextSlide();
+      }, 7000);
+    }
 
-    return () => clearInterval(interval);
-  }, [isTransitioning]);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isHovered, nextSlide]);
 
   return (
-    <section id="projects" className="py-24 px-6">
+    <section 
+      id="projects" 
+      className="py-24 px-6"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-sm font-mono text-primary tracking-wider uppercase">
@@ -124,7 +113,11 @@ export function ProjectsSection() {
         </div>
 
         {/* Main Carousel Container */}
-        <div className="relative h-[600px] overflow-hidden rounded-xl border border-border">
+        <div className="relative h-[600px] overflow-hidden rounded-xl border border-border group">
+          
+          {/* لایه محافظ برای تشخیص موس روی آیفریم */}
+          <div className="absolute inset-0 z-20 pointer-events-none group-hover:pointer-events-auto" />
+
           {/* Current Slide */}
           <div
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
@@ -139,10 +132,11 @@ export function ProjectsSection() {
               className="w-full h-full"
               loading="lazy"
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+              style={{ pointerEvents: isHovered ? 'auto' : 'none' }}
             />
           </div>
           
-          {/* Next Slide (hidden until transition) */}
+          {/* Next Slide */}
           <div
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
               isTransitioning && direction === 'right'
@@ -152,14 +146,13 @@ export function ProjectsSection() {
           >
             <iframe
               src={websites[(currentIndex + 1) % websites.length].url}
-              title={websites[(currentIndex + 1) % websites.length].title}
+              title="Next"
               className="w-full h-full"
               loading="lazy"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
           </div>
           
-          {/* Previous Slide (hidden until transition) */}
+          {/* Previous Slide */}
           <div
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
               isTransitioning && direction === 'left'
@@ -169,10 +162,9 @@ export function ProjectsSection() {
           >
             <iframe
               src={websites[(currentIndex - 1 + websites.length) % websites.length].url}
-              title={websites[(currentIndex - 1 + websites.length) % websites.length].title}
+              title="Prev"
               className="w-full h-full"
               loading="lazy"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
           </div>
         </div>
@@ -188,7 +180,6 @@ export function ProjectsSection() {
                   ? "bg-primary w-8"
                   : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
               }`}
-              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
