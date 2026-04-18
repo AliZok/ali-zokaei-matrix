@@ -66,10 +66,10 @@ export function ProjectsSection() {
   return (
     <section 
       id="projects" 
-      className="h-screen px-6 flex flex-col justify-center"
+      className="h-[calc(100vh-64px)] px-6"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-12">
+      <div className="max-w-7xl mx-auto h-full flex flex-col">
+        <div className="flex items-center justify-between pt-8 mb-8">
           <h2 className="text-sm font-mono text-primary tracking-wider uppercase hover:text-green-500 transition-colors">
             Selected Works
           </h2>
@@ -119,7 +119,7 @@ export function ProjectsSection() {
 
         {/* Main Carousel Container */}
         <div 
-          className="relative h-[calc(100vh-250px)] overflow-hidden rounded-xl border border-border group"
+          className="relative flex-1 overflow-hidden rounded-xl border border-border group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
