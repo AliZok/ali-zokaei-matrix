@@ -7,7 +7,7 @@ const contacts = [
   { icon: Phone, label: "Phone", value: "+374 93 662054", href: "tel:+37493662054" },
   { icon: MapPin, label: "Location", value: "Yerevan, Armenia", href: null },
   { icon: Linkedin, label: "LinkedIn", value: "ali-zokaei-frontend-developer", href: "https://www.linkedin.com/in/ali-zokaei-frontend-developer" },
-  { icon: Globe, label: "Website", value: "owlestic.ir", href: "https://owlestic.ir" },
+  // { icon: Globe, label: "Website", value: "owlestic.ir", href: "https://owlestic.ir" },
 ];
 
 export function ContactSection() {
