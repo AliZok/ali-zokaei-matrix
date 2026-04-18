@@ -3,8 +3,45 @@
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { MatrixRain } from "./matrix-rain";
 import { WebsiteCarousel } from "./website-carousel";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
+  const [showName, setShowName] = useState(false);
+  const [showSubtitle, setShowSubtitle] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const fullText = "frontend developer";
+
+  useEffect(() => {
+    // Start name animation after component mounts
+    const nameTimer = setTimeout(() => setShowName(true), 100);
+    
+    // Start subtitle typing after name animation completes
+    const subtitleTimer = setTimeout(() => {
+      setShowSubtitle(true);
+      startTyping();
+    }, 1500);
+
+    return () => {
+      clearTimeout(nameTimer);
+      clearTimeout(subtitleTimer);
+    };
+  }, []);
+
+  const startTyping = () => {
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      if (index <= fullText.length) {
+        setTypedText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(typingInterval);
+        // Hide cursor after typing completes
+        setTimeout(() => setShowCursor(false), 500);
+      }
+    }, 120);
+  };
+
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -12,25 +49,41 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-32 text-center">
-          <p className="text-primary font-mono text-sm mb-6 tracking-wider uppercase">
-            Frontend Developer
-          </p>
+          <div className={`text-primary font-mono text-sm mb-6 tracking-wider uppercase transition-all duration-1000 ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+            {typedText}
+            <span className={`inline-block w-0.5 h-4 bg-primary ml-1 ${showCursor ? 'animate-pulse' : 'hidden'}`}></span>
+          </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            Ali Zokaei
+          <h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 transition-all duration-1000 transform ${showName ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-16 scale-75'}`}>
+            <span className="inline-block">
+              {showName && (
+                <>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '0ms' }}>A</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '50ms' }}>L</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '100ms' }}>I</span>
+                  <span className="inline-block animate-slide-from-top mx-3" style={{ animationDelay: '150ms' }}></span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '200ms' }}>Z</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '250ms' }}>O</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '300ms' }}>K</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '350ms' }}>A</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '400ms' }}>E</span>
+                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '450ms' }}>I</span>
+                </>
+              )}
+            </span>
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-6 leading-relaxed">
+          <p className={`text-lg text-muted-foreground max-w-xl mx-auto mb-6 leading-relaxed transition-all duration-1000 ${showName ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Building pixel-perfect, accessible user interfaces with 6 years of experience 
             in Vue.js, React.js, Next.js, and TypeScript.
           </p>
 
-          <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm mb-10">
+          <div className={`flex items-center justify-center gap-2 text-muted-foreground text-sm mb-10 transition-all duration-1000 ${showName ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <MapPin size={14} />
             <span>Yerevan, Armenia</span>
           </div>
 
-          <div className="flex items-center justify-center gap-3">
+          <div className={`flex items-center justify-center gap-3 transition-all duration-1000 ${showName ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <a
               href="https://github.com/AliZok"
               target="_blank"
@@ -66,6 +119,23 @@ export function HeroSection() {
         </div>
       </section>
 
+      <style jsx>{`
+        @keyframes slide-from-top {
+          from {
+            opacity: 0;
+            transform: translateY(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-slide-from-top {
+          animation: slide-from-top 0.6s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
     </>
   );
 }
