@@ -80,7 +80,7 @@ export function WebsiteCarousel() {
   }, [isTransitioning]);
 
   return (
-    <div className="w-screen h-screen relative overflow-hidden flex flex-col">
+    <div className="w-full max-w-7xl mx-auto h-screen relative overflow-hidden flex flex-col">
       {/* Main Carousel Container */}
       <div className="relative flex-1 px-[7vw]">
         {/* Current Slide */}
