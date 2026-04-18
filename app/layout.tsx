@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   keywords: ['Frontend Developer', 'Vue.js', 'React.js', 'Next.js', 'TypeScript', 'Ali Zokaei'],
   authors: [{ name: 'Ali Zokaei' }],
+  icons: {
+    icon: '/a-zokaei.png',
+    shortcut: '/a-zokaei.png',
+    apple: '/a-zokaei.png',
+  },
 }
 
 export default function RootLayout({
