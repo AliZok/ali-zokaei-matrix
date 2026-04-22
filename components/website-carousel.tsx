@@ -33,7 +33,7 @@ const websites = [
     url: "https://nails-purple.vercel.app/",
     title: "Nails Purple",
     description: "Women's Nail Art"
-  }
+  },
 ];
 
 export function WebsiteCarousel() {

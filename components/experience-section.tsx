@@ -1,6 +1,7 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const experiences = [
   {
@@ -32,22 +33,47 @@ const experiences = [
 ];
 
 export function ExperienceSection() {
-  return (
-    <section id="experience" className="py-24 px-6 bg-muted/30">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-sm font-mono text-primary mb-12 tracking-wider uppercase">Experience</h2>
+  const sectionRef = useIntersectionObserver({ threshold: 0.1 });
 
-        <div className="space-y-1">
+  return (
+    <section id="experience" ref={sectionRef.ref} className="py-24 px-6 bg-muted/30">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-sm font-mono text-primary mb-12 tracking-wider uppercase">
+          Experience
+        </h2>
+
+        <div className="space-y-1 overflow-hidden">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="group grid md:grid-cols-[180px_1fr] gap-4 p-6 -mx-6 rounded-lg hover:bg-card transition-colors"
+              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 -mx-6 rounded-lg hover:bg-card transition-all duration-800 ease-out ${
+                sectionRef.isIntersecting 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-100 translate-x-0'
+              }`}
+              style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200}ms` : '0ms' }}
             >
-              <p className="text-sm text-muted-foreground font-mono shrink-0">
+              <p className={`text-sm text-muted-foreground font-mono shrink-0 transition-all duration-600 ease-out ${
+                sectionRef.isIntersecting 
+                  ? 'opacity-100 translate-x-0' 
+                  : index % 2 === 0 
+                    ? 'opacity-100 -translate-x-full'
+                    : 'opacity-100 translate-x-full'
+              }`}
+              style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
+              >
                 {exp.period}
               </p>
 
-              <div>
+              <div className={`transition-all duration-600 ease-out ${
+                sectionRef.isIntersecting 
+                  ? 'opacity-100 translate-x-0' 
+                  : index % 2 === 0 
+                    ? 'opacity-100 translate-x-full'
+                    : 'opacity-100 -translate-x-full'
+              }`}
+              style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
+              >
                 <div className="flex items-start gap-2 mb-2">
                   <h3 className="font-medium group-hover:text-primary transition-colors">
                     {exp.title} <span className="text-muted-foreground">·</span> {exp.company}
@@ -70,21 +96,31 @@ export function ExperienceSection() {
                 </p>
 
                 <div className="flex flex-wrap items-center gap-2">
-                  {exp.skills.map((skill) => (
+                  {exp.skills.map((skill, skillIndex) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-xs bg-primary/10 text-primary rounded-full"
+                      className={`px-2.5 py-1 text-xs bg-primary/10 text-primary rounded-full transition-all duration-500 ease-out ${
+                        sectionRef.isIntersecting 
+                          ? 'opacity-100 scale-100' 
+                          : 'opacity-100 scale-75'
+                      }`}
+                      style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 200 + skillIndex * 50}ms` : '0ms' }}
                     >
                       {skill}
                     </span>
                   ))}
-                  {exp.links?.map((link) => (
+                  {exp.links?.map((link, linkIndex) => (
                     <a
                       key={link.name}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground hover:text-primary transition-all duration-500 ease-out ${
+                        sectionRef.isIntersecting 
+                          ? 'opacity-100 translate-x-0' 
+                          : 'opacity-100 -translate-x-4'
+                      }`}
+                      style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 250 + linkIndex * 50}ms` : '0ms' }}
                     >
                       {link.name}
                       <ExternalLink size={10} />
