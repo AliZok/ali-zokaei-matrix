@@ -10,7 +10,7 @@ export function HeroSection() {
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
-  const fullText = "frontend developer";
+  const fullText = "< WEB DEVELOPER />";
 
   useEffect(() => {
     // Start name animation after component mounts
@@ -36,8 +36,8 @@ export function HeroSection() {
         index++;
       } else {
         clearInterval(typingInterval);
-        // Hide cursor after typing completes
-        setTimeout(() => setShowCursor(false), 500);
+        // Continue cursor blinking animation after typing completes
+        // The cursor will keep blinking due to the animate-pulse class
       }
     }, 120);
   };
@@ -51,7 +51,7 @@ export function HeroSection() {
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-32 text-center">
           <div className={`text-primary font-mono text-sm mb-6 tracking-wider uppercase transition-all duration-1000 ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
             {typedText}
-            <span className={`inline-block w-0.5 h-4 bg-primary ml-1 ${showCursor ? 'animate-pulse' : 'hidden'}`}></span>
+            <span className={`inline-block w-0.5 h-4 bg-primary ml-1 ${showCursor ? 'animate-cursor-blink' : 'hidden'}`}></span>
           </div>
 
           <h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 transition-all duration-1000 transform ${showName ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-16 scale-75'}`}>
@@ -131,9 +131,22 @@ export function HeroSection() {
           }
         }
 
+        @keyframes cursor-blink {
+          0%, 50% {
+            opacity: 1;
+          }
+          51%, 100% {
+            opacity: 0;
+          }
+        }
+
         .animate-slide-from-top {
           animation: slide-from-top 0.6s ease-out forwards;
           opacity: 0;
+        }
+
+        .animate-cursor-blink {
+          animation: cursor-blink 1s infinite;
         }
       `}</style>
     </>
