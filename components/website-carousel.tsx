@@ -138,17 +138,17 @@ export function WebsiteCarousel() {
       {/* Navigation Buttons */}
       <button
         onClick={prevSlide}
-        className="absolute left-[7vw] top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-full p-4 hover:bg-background transition-all hover:scale-110 z-10"
+        className="absolute left-[7vw] top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-lg w-20 h-20 hover:bg-background transition-all hover:scale-110 z-10 flex items-center justify-center cursor-pointer"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-8 h-8" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-[7vw] top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-full p-4 hover:bg-background transition-all hover:scale-110 z-10"
+        className="absolute right-[7vw] top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-lg w-20 h-20 hover:bg-background transition-all hover:scale-110 z-10 flex items-center justify-center cursor-pointer"
         aria-label="Next slide"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-8 h-8" />
       </button>
 
       {/* Slide Info */}

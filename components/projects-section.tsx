@@ -76,17 +76,17 @@ export function ProjectsSection() {
           <div className="flex items-center gap-2">
             <button
               onClick={prevSlide}
-              className="p-2 rounded-full border border-border hover:border-green-500 hover:text-green-500 transition-colors"
+              className="w-20 h-20 rounded-lg border border-border hover:border-green-500 hover:text-green-500 transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Previous"
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft size={24} />
             </button>
             <button
               onClick={nextSlide}
-              className="p-2 rounded-full border border-border hover:border-green-500 hover:text-green-500 transition-colors"
+              className="w-20 h-20 rounded-lg border border-border hover:border-green-500 hover:text-green-500 transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Next"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={24} />
             </button>
           </div>
         </div>
