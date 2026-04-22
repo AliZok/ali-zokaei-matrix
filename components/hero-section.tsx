@@ -54,28 +54,19 @@ export function HeroSection() {
             <span className={`inline-block w-0.5 h-4 bg-primary ml-1 ${showCursor ? 'animate-cursor-blink' : 'hidden'}`}></span>
           </div>
 
-          <h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 transition-all duration-1000 transform ${showName ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-16 scale-75'}`}>
+          <h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 transition-all duration-2000 transform ${showName ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 scale-0'}`}>
             <span className="inline-block">
               {showName && (
-                <>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '0ms' }}>A</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '50ms' }}>L</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '100ms' }}>I</span>
-                  <span className="inline-block animate-slide-from-top mx-3" style={{ animationDelay: '150ms' }}></span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '200ms' }}>Z</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '250ms' }}>O</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '300ms' }}>K</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '350ms' }}>A</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '400ms' }}>E</span>
-                  <span className="inline-block animate-slide-from-top" style={{ animationDelay: '450ms' }}>I</span>
-                </>
+                <span className="animate-zoom-from-far">
+                  ALI ZOKAEI
+                </span>
               )}
             </span>
           </h1>
 
           <p className={`text-lg text-muted-foreground max-w-xl mx-auto mb-6 leading-relaxed transition-all duration-1000 ${showName ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            Building pixel-perfect, accessible user interfaces with 6 years of experience 
-            in Vue.js, React.js, Next.js, and TypeScript.
+            Building pixel-perfect, accessible user interfaces with 7 years of experience 
+            in Vue.js, React.js, Node.js, and TypeScript.
           </p>
 
           <div className={`flex items-center justify-center gap-2 text-muted-foreground text-sm mb-10 transition-all duration-1000 ${showName ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -140,6 +131,17 @@ export function HeroSection() {
           }
         }
 
+        @keyframes zoom-from-far {
+          0% {
+            opacity: 0;
+            transform: scale(0.1) translateZ(-1000px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateZ(0);
+          }
+        }
+
         .animate-slide-from-top {
           animation: slide-from-top 0.6s ease-out forwards;
           opacity: 0;
@@ -147,6 +149,10 @@ export function HeroSection() {
 
         .animate-cursor-blink {
           animation: cursor-blink 1s infinite;
+        }
+
+        .animate-zoom-from-far {
+          animation: zoom-from-far 1.5s ease-out forwards;
         }
       `}</style>
     </>
