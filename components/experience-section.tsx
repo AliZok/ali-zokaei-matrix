@@ -5,23 +5,43 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const experiences = [
   {
-    period: "2024 — Present",
+    period: "2025 — Present",
     title: "Frontend Developer",
     company: "GPS Tracking Company (Owlestic)",
     description: "Building real-time GPS tracking dashboards with React.js and Next.js. Implementing live map visualizations and data analytics features.",
-    skills: ["React.js", "Next.js", "TypeScript", "Maps"],
+    skills: ["React.js", "Next.js", "TypeScript", "Maps","SSR"],
     links: [
       { name: "Owlestic", url: "https://www.owlestic.ir/" },
     ],
   },
   {
-    period: "2022 — 2024",
+    period: "2024 — 2025",
     title: "Frontend Developer",
     company: "Server and Hosting Company (Mizban Cloud)",
     description: "Developed cloud service control panels using Vue 3 Composition API. Built server management dashboards and real-time chat features.",
-    skills: ["Vue 3", "Composition API", "TypeScript"],
+    skills: ["Vue.3", "Composition API", "TypeScript"],
     links: [
       { name: "Mizban Cloud", url: "https://mizbancloud.com/" },
+    ],
+  },
+  {
+    period: "2023 — 2024",
+    title: "Frontend Developer",
+    company: "Making Online Applications (Tehran Tandis)",
+    description: "Developed custom online applications and web solutions using Vue 3 Composition API. Implemented responsive designs with Tailwind CSS for various client projects.",
+    skills: ["Vue.3", "Composition API","Tailwind CSS"],
+    links: [
+      { name: "Tehran Tandis", url: "" },
+    ],
+  },
+  {
+    period: "2022 — 2023",
+    title: "Frontend Developer",
+    company: "Selling Flowers Online (Golpini) ",
+    description: "Built an e-commerce platform for online flower sales using Vue 3, Nuxt 2, and SSR for optimal performance. Implemented shopping cart, payment integration, and inventory management features.",
+    skills: ["Vue.3", "Composition API", "Nuxt.2","SSR"],
+    links: [
+      { name: "", url: "" },
     ],
   },
   {
@@ -41,7 +61,7 @@ export function ExperienceSection() {
   const sectionRef = useIntersectionObserver({ threshold: 0.1 });
 
   return (
-    <section id="experience" ref={sectionRef.ref} className="py-24 px-6 bg-muted/30">
+    <section id="experience" ref={sectionRef.ref} className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-sm font-mono text-primary mb-12 tracking-wider uppercase">
           Experience
@@ -51,9 +71,9 @@ export function ExperienceSection() {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out cursor-pointer ${sectionRef.isIntersecting
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-100 translate-x-0'
+              className={`mb-3 bg-muted/30 group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out cursor-pointer ${sectionRef.isIntersecting
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-100 translate-x-0'
                 }`}
               style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200}ms` : '0ms' }}
               onClick={() => {
@@ -63,10 +83,10 @@ export function ExperienceSection() {
               }}
             >
               <p className={`text-sm text-muted-foreground font-mono shrink-0 transition-all duration-600 ease-out ${sectionRef.isIntersecting
-                  ? 'opacity-100 translate-x-0'
-                  : index % 2 === 0
-                    ? 'opacity-100 -translate-x-full'
-                    : 'opacity-100 translate-x-full'
+                ? 'opacity-100 translate-x-0'
+                : index % 2 === 0
+                  ? 'opacity-100 -translate-x-full'
+                  : 'opacity-100 translate-x-full'
                 }`}
                 style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
               >
@@ -74,10 +94,10 @@ export function ExperienceSection() {
               </p>
 
               <div className={`transition-all duration-600 ease-out ${sectionRef.isIntersecting
-                  ? 'opacity-100 translate-x-0'
-                  : index % 2 === 0
-                    ? 'opacity-100 translate-x-full'
-                    : 'opacity-100 -translate-x-full'
+                ? 'opacity-100 translate-x-0'
+                : index % 2 === 0
+                  ? 'opacity-100 translate-x-full'
+                  : 'opacity-100 -translate-x-full'
                 }`}
                 style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
               >
@@ -96,8 +116,8 @@ export function ExperienceSection() {
                     <span
                       key={skill}
                       className={`px-2.5 py-1 text-xs bg-primary/10 text-primary rounded-full transition-all duration-500 ease-out ${sectionRef.isIntersecting
-                          ? 'opacity-100 scale-100'
-                          : 'opacity-100 scale-75'
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-100 scale-75'
                         }`}
                       style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 200 + skillIndex * 50}ms` : '0ms' }}
                     >
@@ -112,8 +132,8 @@ export function ExperienceSection() {
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground hover:text-primary transition-all duration-500 ease-out ${sectionRef.isIntersecting
-                          ? 'opacity-100 translate-x-0'
-                          : 'opacity-100 -translate-x-4'
+                        ? 'opacity-100 translate-x-0'
+                        : 'opacity-100 -translate-x-4'
                         }`}
                       style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 250 + linkIndex * 50}ms` : '0ms' }}
                     >
