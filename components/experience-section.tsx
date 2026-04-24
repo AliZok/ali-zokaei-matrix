@@ -7,22 +7,28 @@ const experiences = [
   {
     period: "2024 — Present",
     title: "Frontend Developer",
-    company: "GPS Tracking Company",
+    company: "GPS Tracking Company (Owlestic)",
     description: "Building real-time GPS tracking dashboards with React.js and Next.js. Implementing live map visualizations and data analytics features.",
     skills: ["React.js", "Next.js", "TypeScript", "Maps"],
+    links: [
+      { name: "Owlestic", url: "https://www.owlestic.ir/" },
+    ],
   },
   {
     period: "2022 — 2024",
     title: "Frontend Developer",
-    company: "Mizban Cloud",
+    company: "Server and Hosting Company (Mizban Cloud)",
     url: "https://mizbancloud.com",
     description: "Developed cloud service control panels using Vue 3 Composition API. Built server management dashboards and real-time chat features.",
     skills: ["Vue 3", "Composition API", "TypeScript"],
+    links: [
+      { name: "Mizban Cloud", url: "https://mizbancloud.com/" },
+    ],
   },
   {
     period: "2019 — 2022",
     title: "Frontend Developer",
-    company: "Saba Idea Holding",
+    company: "Digital Marketing and Media Company (Saba Idea Holding)",
     description: "Contributed to major Iranian platforms including Aparat (video sharing) and Filimo (streaming service). Worked with jQuery, JavaScript, and modern frameworks.",
     skills: ["JavaScript", "jQuery", "Vue.js"],
     links: [
@@ -46,33 +52,30 @@ export function ExperienceSection() {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out ${
-                sectionRef.isIntersecting 
-                  ? 'opacity-100 translate-x-0' 
+              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out ${sectionRef.isIntersecting
+                  ? 'opacity-100 translate-x-0'
                   : 'opacity-100 translate-x-0'
-              }`}
+                }`}
               style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200}ms` : '0ms' }}
             >
-              <p className={`text-sm text-muted-foreground font-mono shrink-0 transition-all duration-600 ease-out ${
-                sectionRef.isIntersecting 
-                  ? 'opacity-100 translate-x-0' 
-                  : index % 2 === 0 
+              <p className={`text-sm text-muted-foreground font-mono shrink-0 transition-all duration-600 ease-out ${sectionRef.isIntersecting
+                  ? 'opacity-100 translate-x-0'
+                  : index % 2 === 0
                     ? 'opacity-100 -translate-x-full'
                     : 'opacity-100 translate-x-full'
-              }`}
-              style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
+                }`}
+                style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
               >
                 {exp.period}
               </p>
 
-              <div className={`transition-all duration-600 ease-out ${
-                sectionRef.isIntersecting 
-                  ? 'opacity-100 translate-x-0' 
-                  : index % 2 === 0 
+              <div className={`transition-all duration-600 ease-out ${sectionRef.isIntersecting
+                  ? 'opacity-100 translate-x-0'
+                  : index % 2 === 0
                     ? 'opacity-100 translate-x-full'
                     : 'opacity-100 -translate-x-full'
-              }`}
-              style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
+                }`}
+                style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 150}ms` : '0ms' }}
               >
                 <div className="flex items-start gap-2 mb-2">
                   <h3 className="font-medium group-hover:text-primary transition-colors">
@@ -99,11 +102,10 @@ export function ExperienceSection() {
                   {exp.skills.map((skill, skillIndex) => (
                     <span
                       key={skill}
-                      className={`px-2.5 py-1 text-xs bg-primary/10 text-primary rounded-full transition-all duration-500 ease-out ${
-                        sectionRef.isIntersecting 
-                          ? 'opacity-100 scale-100' 
+                      className={`px-2.5 py-1 text-xs bg-primary/10 text-primary rounded-full transition-all duration-500 ease-out ${sectionRef.isIntersecting
+                          ? 'opacity-100 scale-100'
                           : 'opacity-100 scale-75'
-                      }`}
+                        }`}
                       style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 200 + skillIndex * 50}ms` : '0ms' }}
                     >
                       {skill}
@@ -115,11 +117,10 @@ export function ExperienceSection() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground hover:text-primary transition-all duration-500 ease-out ${
-                        sectionRef.isIntersecting 
-                          ? 'opacity-100 translate-x-0' 
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground hover:text-primary transition-all duration-500 ease-out ${sectionRef.isIntersecting
+                          ? 'opacity-100 translate-x-0'
                           : 'opacity-100 -translate-x-4'
-                      }`}
+                        }`}
                       style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200 + 250 + linkIndex * 50}ms` : '0ms' }}
                     >
                       {link.name}
