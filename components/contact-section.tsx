@@ -1,10 +1,11 @@
 "use client";
 
-import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Globe, Send } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const contacts = [
   { icon: Mail, label: "Email", value: "ali.zokaei.1367@gmail.com", href: "mailto:ali.zokaei.1367@gmail.com" },
+  { icon: Send, label: "Telegram", value: "+989124888723", href: "https://t.me/+989124888723" },
   { icon: Phone, label: "Phone", value: "+374 93 662054", href: "tel:+37493662054" },
   { icon: MapPin, label: "Location", value: "Yerevan, Armenia", href: null },
   { icon: Linkedin, label: "LinkedIn", value: "ali-zokaei-frontend-developer", href: "https://www.linkedin.com/in/ali-zokaei-frontend-developer" },
