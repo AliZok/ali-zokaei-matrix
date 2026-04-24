@@ -9,7 +9,10 @@ const websites = [
   { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website" },
   { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition" },
   { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading" },
-  { url: "https://nails-purple.vercel.app/", title: "Nails Purple", description: "Women's Nail Art" }
+  { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art" },
+  { url: "https://www.tavan-sanaat.com/en", title: "Measuring Weather", description: "Measuring and weather monitoring" },
+  { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art" },
+  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services" },
 ];
 
 export function ProjectsSection() {
