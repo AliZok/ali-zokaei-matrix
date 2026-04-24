@@ -69,26 +69,10 @@ export function ProjectsSection() {
       className="h-[calc(100vh-64px)] px-6"
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col">
-        <div className="flex items-center justify-between pt-8 mb-8">
+        <div className="pt-8 mb-8">
           <h2 className="text-sm font-mono text-primary tracking-wider uppercase hover:text-green-500 transition-colors">
             Selected Works
           </h2>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={prevSlide}
-              className="w-20 h-20 rounded-lg border border-border hover:border-green-500 hover:text-green-500 transition-colors flex items-center justify-center cursor-pointer"
-              aria-label="Previous"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="w-20 h-20 rounded-lg border border-border hover:border-green-500 hover:text-green-500 transition-colors flex items-center justify-center cursor-pointer"
-              aria-label="Next"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
         </div>
 
         {/* Title Carousel */}
@@ -123,6 +107,24 @@ export function ProjectsSection() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
+          
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-[90px] md:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} className="md:size-8" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-[90px] md:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} className="md:size-8" />
+          </button>
           
           {/* Clickable overlay for iframe */}
           <a
