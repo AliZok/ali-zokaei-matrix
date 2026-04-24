@@ -18,7 +18,6 @@ const experiences = [
     period: "2022 — 2024",
     title: "Frontend Developer",
     company: "Server and Hosting Company (Mizban Cloud)",
-    url: "https://mizbancloud.com",
     description: "Developed cloud service control panels using Vue 3 Composition API. Built server management dashboards and real-time chat features.",
     skills: ["Vue 3", "Composition API", "TypeScript"],
     links: [
@@ -52,11 +51,16 @@ export function ExperienceSection() {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out ${sectionRef.isIntersecting
+              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out cursor-pointer ${sectionRef.isIntersecting
                   ? 'opacity-100 translate-x-0'
                   : 'opacity-100 translate-x-0'
                 }`}
               style={{ transitionDelay: sectionRef.isIntersecting ? `${index * 200}ms` : '0ms' }}
+              onClick={() => {
+                if (exp.links && exp.links.length > 0) {
+                  window.open(exp.links[0].url, '_blank', 'noopener,noreferrer');
+                }
+              }}
             >
               <p className={`text-sm text-muted-foreground font-mono shrink-0 transition-all duration-600 ease-out ${sectionRef.isIntersecting
                   ? 'opacity-100 translate-x-0'
@@ -81,17 +85,6 @@ export function ExperienceSection() {
                   <h3 className="font-medium group-hover:text-primary transition-colors">
                     {exp.title} <span className="text-muted-foreground">·</span> {exp.company}
                   </h3>
-                  {exp.url && (
-                    <a
-                      href={exp.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors mt-0.5"
-                      aria-label={`Visit ${exp.company}`}
-                    >
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
@@ -117,6 +110,7 @@ export function ExperienceSection() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground hover:text-primary transition-all duration-500 ease-out ${sectionRef.isIntersecting
                           ? 'opacity-100 translate-x-0'
                           : 'opacity-100 -translate-x-4'
