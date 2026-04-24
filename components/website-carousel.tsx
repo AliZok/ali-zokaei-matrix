@@ -34,6 +34,12 @@ const websites = [
     title: "Nails Purple",
     description: "Women's Nail Art"
   },
+  {
+    url: "https://ali-zokaei.vercel.app/",
+    title: "Logistic",
+    description: "Logistic Services"
+  },
+
 ];
 
 export function WebsiteCarousel() {

@@ -46,7 +46,7 @@ export function ExperienceSection() {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 -mx-6 rounded-lg hover:bg-card transition-all duration-800 ease-out ${
+              className={`group grid md:grid-cols-[180px_1fr] gap-4 p-6 rounded-lg hover:bg-card transition-all duration-800 ease-out ${
                 sectionRef.isIntersecting 
                   ? 'opacity-100 translate-x-0' 
                   : 'opacity-100 translate-x-0'
