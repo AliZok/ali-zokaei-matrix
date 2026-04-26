@@ -8,11 +8,12 @@ const websites = [
   { url: "https://psycho-tatto.vercel.app/", title: "Tattoo Artist", description: "Tattoo Art Studio" },
   { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website" },
   { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition" },
+  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services" },
   { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading" },
   { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art" },
-  { url: "https://www.tavan-sanaat.com/en", title: "Measuring Weather", description: "Measuring and weather monitoring" },
+  { url: "https://ali-zokaei.vercel.app/", title: "Yello", description: "Holding for Logestic and other businesses" },
   { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art" },
-  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services" },
+
 ];
 
 export function ProjectsSection() {
