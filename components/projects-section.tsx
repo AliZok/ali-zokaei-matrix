@@ -13,6 +13,7 @@ const websites = [
   { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art" },
   { url: "https://ali-zokaei.vercel.app/", title: "Yello", description: "Holding for Logestic and other businesses" },
   { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art" },
+  { url: "https://afsane-rohani-personal-brand.vercel.app/", title: "Legal Lawyer", description: "Legal Services" },
 
 ];
 
