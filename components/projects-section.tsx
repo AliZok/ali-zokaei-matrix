@@ -71,7 +71,7 @@ export function ProjectsSection() {
   return (
     <section 
       id="projects" 
-      className="h-[calc(100vh-64px)] px-6"
+      className="h-[calc(100vh-64px)] px-4 sm:px-6 overflow-x-hidden"
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col">
         <div className="pt-8 mb-8">
@@ -94,10 +94,10 @@ export function ProjectsSection() {
                   rel="noopener noreferrer"
                   className="block hover:text-green-500 transition-colors"
                 >
-                  <h3 className="text-3xl md:text-4xl font-bold text-foreground hover:text-green-500 transition-colors">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground hover:text-green-500 transition-colors break-words">
                     {website.title}
                   </h3>
-                  <p className="text-lg text-muted-foreground mt-2 hover:text-green-500 transition-colors">
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-2 hover:text-green-500 transition-colors">
                     {website.description}
                   </p>
                 </a>
@@ -116,19 +116,19 @@ export function ProjectsSection() {
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-[90px] md:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[90px] lg:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
             aria-label="Previous"
           >
-            <ChevronLeft size={20} className="md:size-8" />
+            <ChevronLeft size={16} className="sm:size-4 md:size-5 lg:size-8" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-[90px] md:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[90px] lg:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
             aria-label="Next"
           >
-            <ChevronRight size={20} className="md:size-8" />
+            <ChevronRight size={16} className="sm:size-4 md:size-5 lg:size-8" />
           </button>
           
           {/* Clickable overlay for iframe */}
@@ -138,7 +138,7 @@ export function ProjectsSection() {
             rel="noopener noreferrer"
             className="absolute inset-0 z-20 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-colors cursor-pointer"
           >
-            <div className="text-white opacity-0 hover:opacity-100 transition-opacity bg-black/50 px-4 py-2 rounded-lg">
+            <div className="text-white text-xs sm:text-sm opacity-0 hover:opacity-100 transition-opacity bg-black/50 px-2 sm:px-4 py-1 sm:py-2 rounded-lg">
               Click to visit website
             </div>
           </a>

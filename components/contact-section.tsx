@@ -16,7 +16,7 @@ export function ContactSection() {
   const sectionRef = useIntersectionObserver({ threshold: 0.2 });
 
   return (
-    <section id="contact" ref={sectionRef.ref} className="py-24 px-6 bg-muted/30">
+    <section id="contact" ref={sectionRef.ref} className="py-24 px-4 sm:px-6 bg-muted/30 overflow-x-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="max-w-xl">
           <h2 
@@ -54,7 +54,7 @@ export function ContactSection() {
             {contacts.map((item, index) => {
               const content = (
                 <div 
-                  className={`flex items-center gap-4 p-4 rounded-lg hover:bg-card transition-all duration-700 ease-out group ${
+                  className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-card transition-all duration-700 ease-out group overflow-hidden ${
                     sectionRef.isIntersecting 
                       ? 'opacity-100 translate-x-0 scale-100' 
                       : 'opacity-0 translate-x-full scale-95'
@@ -64,7 +64,7 @@ export function ContactSection() {
                     transformOrigin: index % 2 === 0 ? 'left center' : 'right center'
                   }}
                 >
-                  <div className={`w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center group-hover:border-primary transition-all duration-500 ease-out ${
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-card border border-border flex items-center justify-center group-hover:border-primary transition-all duration-500 ease-out flex-shrink-0 ${
                     sectionRef.isIntersecting 
                       ? 'opacity-100 scale-100 rotate-0' 
                       : 'opacity-0 scale-0 rotate-180'
@@ -73,9 +73,9 @@ export function ContactSection() {
                     transitionDelay: sectionRef.isIntersecting ? `${400 + index * 150}ms` : '0ms'
                   }}
                   >
-                    <item.icon size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                    <item.icon size={14} className="sm:size-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
                   </div>
-                  <div className={`transition-all duration-600 ease-out ${
+                  <div className={`transition-all duration-600 ease-out overflow-hidden ${
                     sectionRef.isIntersecting 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-4'
@@ -83,7 +83,7 @@ export function ContactSection() {
                   style={{ transitionDelay: sectionRef.isIntersecting ? `${500 + index * 150}ms` : '0ms' }}
                   >
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
-                    <p className="text-sm font-medium">{item.value}</p>
+                    <p className="text-sm font-medium break-all sm:break-words">{item.value}</p>
                   </div>
                 </div>
               );
