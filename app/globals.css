@@ -73,18 +73,22 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
+  background: rgba(23, 91, 48, 0.446);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
+  background: rgb(37, 127, 70);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgb(37, 127, 70);
 }
