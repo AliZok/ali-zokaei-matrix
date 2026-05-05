@@ -4,16 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const websites = [
-  { url: "https://ali-zokaei-women-salon.vercel.app/", title: "Women Salon", description: "Women's Salon" },
-  { url: "https://psycho-tatto.vercel.app/", title: "Tattoo Artist", description: "Tattoo Art Studio" },
-  { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website" },
-  { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition" },
-  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services" },
-  { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading" },
-  { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art" },
-  { url: "https://ali-zokaei.vercel.app/", title: "Yello", description: "Holding for Logestic and other businesses" },
-  { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art" },
-  { url: "https://afsane-rohani-personal-brand.vercel.app/", title: "Legal Lawyer", description: "Legal Services" },
+  { url: "https://ali-zokaei-women-salon.vercel.app/", title: "Women Salon", description: "Women's Salon", imageUrl: "/women-salon.PNG" },
+  { url: "https://psycho-tatto.vercel.app/", title: "Tattoo Artist", description: "Tattoo Art Studio", imageUrl: "/tatto.PNG" },
+  { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website", imageUrl: "/sam.PNG" },
+  { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition", imageUrl: "/car.PNG" },
+  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services", imageUrl: "/travells.PNG" },
+  { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading", imageUrl: "/crypto.PNG" },
+  { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art", imageUrl: "/nails.PNG" },
+  { url: "https://ali-zokaei.vercel.app/", title: "Yello", description: "Holding for Logestic and other businesses", imageUrl: "/yello.PNG" },
+  { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art", imageUrl: "/purple-nails.PNG" },
+  { url: "https://afsane-rohani-personal-brand.vercel.app/", title: "Legal Lawyer", description: "Legal Services", imageUrl: "/legal.PNG" },
 
 ];
 
@@ -151,13 +151,11 @@ export function ProjectsSection() {
                 : 'opacity-100 scale-100'
             }`}
           >
-            <iframe
-              src={websites[currentIndex].url}
-              title={websites[currentIndex].title}
-              className="w-full h-full"
+            <img
+              src={websites[currentIndex].imageUrl}
+              alt={websites[currentIndex].title}
+              className="w-full h-full object-cover"
               loading="lazy"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-              style={{ pointerEvents: isHovered ? 'auto' : 'none' }}
             />
           </div>
           
@@ -169,10 +167,10 @@ export function ProjectsSection() {
                 : 'opacity-0 scale-90'
             }`}
           >
-            <iframe
-              src={websites[(currentIndex + 1) % websites.length].url}
-              title="Next"
-              className="w-full h-full"
+            <img
+              src={websites[(currentIndex + 1) % websites.length].imageUrl}
+              alt={websites[(currentIndex + 1) % websites.length].title}
+              className="w-full h-full object-cover"
               loading="lazy"
             />
           </div>
@@ -185,10 +183,10 @@ export function ProjectsSection() {
                 : 'opacity-0 scale-90'
             }`}
           >
-            <iframe
-              src={websites[(currentIndex - 1 + websites.length) % websites.length].url}
-              title="Prev"
-              className="w-full h-full"
+            <img
+              src={websites[(currentIndex - 1 + websites.length) % websites.length].imageUrl}
+              alt={websites[(currentIndex - 1 + websites.length) % websites.length].title}
+              className="w-full h-full object-cover"
               loading="lazy"
             />
           </div>
