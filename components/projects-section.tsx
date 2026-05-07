@@ -143,52 +143,23 @@ export function ProjectsSection() {
             </div>
           </a>
 
-          {/* Current Slide */}
-          <div
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              isTransitioning
-                ? 'opacity-0 scale-110'
-                : 'opacity-100 scale-100'
-            }`}
-          >
-            <img
-              src={websites[currentIndex].imageUrl}
-              alt={websites[currentIndex].title}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          
-          {/* Next Slide */}
-          <div
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              isTransitioning && direction === 'right'
-                ? 'opacity-100 scale-100'
-                : 'opacity-0 scale-90'
-            }`}
-          >
-            <img
-              src={websites[(currentIndex + 1) % websites.length].imageUrl}
-              alt={websites[(currentIndex + 1) % websites.length].title}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          
-          {/* Previous Slide */}
-          <div
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              isTransitioning && direction === 'left'
-                ? 'opacity-100 scale-100'
-                : 'opacity-0 scale-90'
-            }`}
-          >
-            <img
-              src={websites[(currentIndex - 1 + websites.length) % websites.length].imageUrl}
-              alt={websites[(currentIndex - 1 + websites.length) % websites.length].title}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+          {/* Slides Container */}
+          <div className="relative w-full h-full overflow-hidden">
+            <div
+              className="flex transition-transform duration-700 ease-in-out h-full"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {websites.map((website, index) => (
+                <div key={index} className="w-full flex-shrink-0">
+                  <img
+                    src={website.imageUrl}
+                    alt={website.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
