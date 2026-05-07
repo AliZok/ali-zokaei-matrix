@@ -116,19 +116,19 @@ export function ProjectsSection() {
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[90px] lg:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
+            className="absolute left-4 bottom-4 z-30 w-[70px] h-[70px] sm:left-2 sm:top-1/2 sm:-translate-y-1/2 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:left-4 lg:top-1/2 lg:-translate-y-1/2 lg:w-[90px] lg:h-[90px] rounded-lg bg-black/30 backdrop-blur-sm border border-white/20 hover:border-green-500 hover:text-green-500 active:border-green-500 active:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-50 sm:opacity-0 sm:group-hover:opacity-100 hover:opacity-100 shadow-lg shadow-black/20"
             aria-label="Previous"
           >
-            <ChevronLeft size={16} className="sm:size-4 md:size-5 lg:size-8" />
+            <ChevronLeft size={24} className="sm:size-4 md:size-5 lg:size-8" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[90px] lg:h-[90px] rounded-lg bg-black/50 backdrop-blur-sm border border-border/50 hover:border-green-500 hover:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100"
+            className="absolute right-4 bottom-4 z-30 w-[70px] h-[70px] sm:right-2 sm:top-1/2 sm:-translate-y-1/2 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:w-[90px] lg:h-[90px] rounded-lg bg-black/30 backdrop-blur-sm border border-white/20 hover:border-green-500 hover:text-green-500 active:border-green-500 active:text-green-500 transition-all flex items-center justify-center cursor-pointer opacity-50 sm:opacity-0 sm:group-hover:opacity-100 hover:opacity-100 shadow-lg shadow-black/20"
             aria-label="Next"
           >
-            <ChevronRight size={16} className="sm:size-4 md:size-5 lg:size-8" />
+            <ChevronRight size={24} className="sm:size-4 md:size-5 lg:size-8" />
           </button>
           
           {/* Clickable overlay for iframe */}
