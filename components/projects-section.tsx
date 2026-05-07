@@ -4,16 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const websites = [
-  { url: "https://ali-zokaei-women-salon.vercel.app/", title: "Women Salon", description: "Women's Salon", imageUrl: "/women-salon.PNG" },
-  { url: "https://psycho-tatto.vercel.app/", title: "Tattoo Artist", description: "Tattoo Art Studio", imageUrl: "/tatto.PNG" },
-  { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website", imageUrl: "/sam.PNG" },
-  { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition", imageUrl: "/car.PNG" },
-  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services", imageUrl: "/travells.PNG" },
-  { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading", imageUrl: "/crypto.PNG" },
-  { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art", imageUrl: "/nails.PNG" },
-  { url: "https://ali-zokaei.vercel.app/", title: "Yello", description: "Holding for Logestic and other businesses", imageUrl: "/yello.PNG" },
-  { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art", imageUrl: "/purple-nails.PNG" },
-  { url: "https://afsane-rohani-personal-brand.vercel.app/", title: "Legal Lawyer", description: "Legal Services", imageUrl: "/legal.PNG" },
+  { url: "https://ali-zokaei-women-salon.vercel.app/", title: "Women Salon", description: "Women's Salon", imageUrl: "/women-salon.PNG", mobileImageUrl: "/mobile-salon-pink.PNG" },
+  { url: "https://psycho-tatto.vercel.app/", title: "Tattoo Artist", description: "Tattoo Art Studio", imageUrl: "/tatto.PNG", mobileImageUrl: "/mobile-tatto.PNG" },
+  { url: "https://ali-zokaei-personal-branding.vercel.app/", title: "Personal Branding", description: "Personal Brand Website", imageUrl: "/sam.PNG", mobileImageUrl: "/mobile-personal.PNG" },
+  { url: "https://car-show-wine.vercel.app/", title: "Car Show", description: "Automobile Exhibition", imageUrl: "/car.PNG", mobileImageUrl: "/mobile-car.PNG" },
+  { url: "https://travel-three-smoky.vercel.app/", title: "Tours And Travels", description: "Tourism and travel services", imageUrl: "/travells.PNG", mobileImageUrl: "/travells-mobile.PNG" },
+  { url: "https://crypto-exchange-arnitex.netlify.app/", title: "Crypto Exchange", description: "Cryptocurrency Trading", imageUrl: "/crypto.PNG", mobileImageUrl: "/crypto-mobile.PNG" },
+  { url: "https://nails-opal.vercel.app/", title: "Opal Nails", description: "Women's Nail Art", imageUrl: "/nails.PNG", mobileImageUrl: "/nails-mobile.PNG" },
+  { url: "https://ali-zokaei.vercel.app/", title: "Yello", description: "Holding for Logestic and other businesses", imageUrl: "/yello.PNG", mobileImageUrl: "/yello-mobile.PNG" },
+  { url: "https://nails-purple.vercel.app/", title: "Purple Nails", description: "Women's Nail Art", imageUrl: "/purple-nails.PNG", mobileImageUrl: "/purple-nails-mobile.PNG" },
+  { url: "https://afsane-rohani-personal-brand.vercel.app/", title: "Legal Lawyer", description: "Legal Services", imageUrl: "/legal.PNG", mobileImageUrl: "/legal-mobile.PNG" },
 
 ];
 
@@ -151,12 +151,18 @@ export function ProjectsSection() {
             >
               {websites.map((website, index) => (
                 <div key={index} className="w-full flex-shrink-0">
-                  <img
-                    src={website.imageUrl}
-                    alt={website.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source 
+                      media="(max-width: 640px)" 
+                      srcSet={website.mobileImageUrl} 
+                    />
+                    <img
+                      src={website.imageUrl}
+                      alt={website.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
               ))}
             </div>
